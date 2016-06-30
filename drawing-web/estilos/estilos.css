@@ -80,6 +80,11 @@ canvas{
 	background-color: rgb(238, 238, 238);
 	border-radius: 50%;
 }
+#barraHerramientas li#codigo{
+	background: url('../imagenes/logos/cod.png') 100% 100% / 100% 100% no-repeat;
+	background-color: rgb(238, 238, 238);
+	border-radius: 50%;
+}
 #barraHerramientas li#verHecho{
 	background: url('../imagenes/logos/photo.png') 100% 100% / 100% 100% no-repeat;
 	background-color: rgb(238, 238, 238);
@@ -714,6 +719,47 @@ canvas{
 	opacity: 0;
 	pointer-events: none;
 }
+/********************************/
+.codigoPanel{
+	position: fixed;
+	background: #eee;
+	box-shadow: 0 0 5px rgba(0, 0, 0,.5);
+	width: 500px;
+	height: 500px;
+	top: 50px;
+	left: 100px;
+	border-radius: 3px;
+}
+.codigoPanel>.btnS{
+	position: absolute;
+	border-left: 1px solid rgba(0, 0, 0,.2);
+	padding-top: 10px;
+	right: 0;
+	width: 50px;
+	height: 100%;
+	box-sizing: border-box;
+}
+.codigoPanel>.btnS>div{
+	position: relative;
+	background: ;
+	border: 1px solid rgba(0, 0, 0,.2);
+	border-radius: 50%;
+	width: 45px;
+	height: 45px;
+	margin: 5px auto;
+	cursor: pointer;
+}
+.codigoPanel>.areaCodigo{
+	position: absolute;
+	background: rgba(128, 128, 128,1);
+	width: 450px;
+	height: 100%;
+	padding: 5px 15px;
+	font-family: arial;
+	font-size: 15px;
+	box-sizing: border-box;
+}
+/********************************/
 .clear{
 	clear: both;
 }

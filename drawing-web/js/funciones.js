@@ -42,6 +42,9 @@ function inicio() {
 			document.getElementById('holaDrag').innerHTML='<li id="logeo" onclick="ingresarSaUser(\'logeo\')" title="logearse"></li><li id="nuevoU" onclick="ingresarSaUser(\'registro\')" title="registrar usuario"></li>';
 		}
 	}
+	window.onresize = function(){
+		calcTamPanel();
+	};
 }
 function dibujarCanvas(){
 	var canvas=document.createElement('canvas');
@@ -213,6 +216,35 @@ function lapizC(){
 	var tag=document.getElementById('flotante');
 	tag.innerHTML=formG;
 	flotante('show');
+}
+function showpanel(){
+	var doc = document.getElementById("campoDraw");
+	var div = document.createElement("div");
+	var btn = document.createElement("div");
+	var btnC = document.createElement("div");
+	var btnP = document.createElement("div");
+	var areaCod = document.createElement("div");
+	var btnClose = document.createElement("div");
+	btn.className = "btnS";
+	btnClose.className = "btn_close";
+	btnC.className = "btn_clear";
+	btnP.className = "btn_preview";
+	div.className = "codigoPanel";
+	areaCod.className = "areaCodigo";
+	areaCod.contentEditable = "true";
+	btn.appendChild(btnP);
+	btn.appendChild(btnC);
+	btn.appendChild(btnClose);
+	div.appendChild(btn);
+	div.appendChild(areaCod);
+	doc.appendChild(div);
+	calcTamPanel();
+}
+function calcTamPanel(){
+	var tamD = document.documentElement.offsetWidth;
+	var tamPa = document.getElementsByClassName("codigoPanel")[0];
+	var ntam = ((tamD - tamPa.offsetWidth) / 2) + "px";
+	tamPa.style.left = ntam;
 }
 function opcionesLapiz(opcion){
 	drawW.forma.tipo=opcion;
