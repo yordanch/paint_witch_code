@@ -218,6 +218,7 @@ function lapizC(){
 	flotante('show');
 }
 function showpanel(){
+	if(document.getElementsByClassName("codigoPanel")[0]) return;
 	var doc = document.getElementById("campoDraw");
 	var div = document.createElement("div");
 	var btn = document.createElement("div");
@@ -232,6 +233,8 @@ function showpanel(){
 	div.className = "codigoPanel";
 	areaCod.className = "areaCodigo";
 	areaCod.contentEditable = "true";
+
+	btnClose.addEventListener("click",hiddenPan,false);
 	btn.appendChild(btnP);
 	btn.appendChild(btnC);
 	btn.appendChild(btnClose);
@@ -239,12 +242,24 @@ function showpanel(){
 	div.appendChild(areaCod);
 	doc.appendChild(div);
 	calcTamPanel();
+	showPanelS();
 }
 function calcTamPanel(){
 	var tamD = document.documentElement.offsetWidth;
 	var tamPa = document.getElementsByClassName("codigoPanel")[0];
 	var ntam = ((tamD - tamPa.offsetWidth) / 2) + "px";
 	tamPa.style.left = ntam;
+}
+function hiddenPan(){
+	var tamPa = document.getElementsByClassName("codigoPanel")[0];
+	tamPa.className = "codigoPanel hidennP";
+	window.setTimeout(function(){
+		tamPa.remove();
+	},1000);
+}
+function showPanelS(){
+	var tamPa = document.getElementsByClassName("codigoPanel")[0];
+	tamPa.className = "codigoPanel showPs";
 }
 function opcionesLapiz(opcion){
 	drawW.forma.tipo=opcion;
