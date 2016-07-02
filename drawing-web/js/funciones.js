@@ -17,7 +17,10 @@ function inicio() {
 		},
 		posicionX: 10,
 		posicionY: 10
-	}
+	};
+	codWD = {
+		cod: ""
+	};
 	if(document.getElementById('campoDraw')){
 		drawW.forma.circuloR = document.getElementById('tamVal').value;
 		dubujoCamenzar();
@@ -235,6 +238,9 @@ function showpanel(){
 	areaCod.contentEditable = "true";
 
 	btnClose.addEventListener("click",hiddenPan,false);
+	btnP.addEventListener("click",previewCod,false);
+	btnC.addEventListener("click",clearArea,false);
+	areaCod.addEventListener("keyup",drawC,false);
 	btn.appendChild(btnP);
 	btn.appendChild(btnC);
 	btn.appendChild(btnClose);
@@ -249,6 +255,27 @@ function calcTamPanel(){
 	var tamPa = document.getElementsByClassName("codigoPanel")[0];
 	var ntam = ((tamD - tamPa.offsetWidth) / 2) + "px";
 	tamPa.style.left = ntam;
+}
+function drawC(e){
+	if(e.key == "Backspace"){
+		var n = codWD.cod.length;
+		var te = codWD.cod;
+		codWD.cod = "";
+		for(i=0;i<n-1;i++){
+			codWD.cod = codWD.cod + te[i];
+		}
+		return;
+	}
+	codWD.cod = codWD.cod + "" + e.key;
+	//console.log(codWD.cod);
+	if(document.getElementsByClassName("codigoPanel")[0].innerHTML == "") codWD.cod="";
+}
+function previewCod(){
+	var cod = document.getElementsByClassName("areaCodigo")[0].innerHTML;
+	console.log(cod);
+}
+function clearArea(){
+	document.getElementsByClassName("areaCodigo")[0].innerHTML = "";
 }
 function hiddenPan(){
 	var tamPa = document.getElementsByClassName("codigoPanel")[0];
