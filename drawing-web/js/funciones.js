@@ -19,7 +19,8 @@ function inicio() {
 		posicionY: 10
 	};
 	codWD = {
-		cod: ""
+		cod: "",
+		canvas: false
 	};
 	if(document.getElementById('campoDraw')){
 		drawW.forma.circuloR = document.getElementById('tamVal').value;
@@ -220,6 +221,7 @@ function lapizC(){
 	tag.innerHTML=formG;
 	flotante('show');
 }
+/*****************************/
 function showpanel(){
 	if(document.getElementsByClassName("codigoPanel")[0]) return;
 	var doc = document.getElementById("campoDraw");
@@ -228,9 +230,11 @@ function showpanel(){
 	var btnC = document.createElement("div");
 	var btnP = document.createElement("div");
 	var areaCod = document.createElement("div");
+	var btnHelp = document.createElement("div");
 	var btnClose = document.createElement("div");
 	btn.className = "btnS";
 	btnClose.className = "btn_close";
+	btnHelp.className = "btn_help";
 	btnC.className = "btn_clear";
 	btnP.className = "btn_preview";
 	div.className = "codigoPanel";
@@ -243,12 +247,20 @@ function showpanel(){
 	areaCod.addEventListener("keyup",drawC,false);
 	btn.appendChild(btnP);
 	btn.appendChild(btnC);
+	btn.appendChild(btnHelp);
 	btn.appendChild(btnClose);
 	div.appendChild(btn);
 	div.appendChild(areaCod);
 	doc.appendChild(div);
 	calcTamPanel();
 	showPanelS();
+	/*****/
+	codWD.canvas = startCanvas();
+	drawRect(codWD.canvas, 20, 20, 50, 50, [true, "#f00"], [true, "#00f", 19, 19, 52, 52]);
+}
+function startCanvas(){
+	var cnvs = canvas;
+	if(cnvs.getContext) return cnvs.getContext("2d");
 }
 function calcTamPanel(){
 	var tamD = document.documentElement.offsetWidth;
@@ -288,6 +300,44 @@ function showPanelS(){
 	var tamPa = document.getElementsByClassName("codigoPanel")[0];
 	tamPa.className = "codigoPanel showPs";
 }
+function drawRect(_canvas, _posx, _posy, _anch, _alto, Fondo, Borde){
+	var color = "#f0f";
+	var rectF = false;
+	var rectB = false;
+	var rectBF = false;
+	var extra = false;
+	if((Fondo.length>0 && Borde.length>0) || (Fondo & Borde)){
+		if(Fondo[0] && Borde[0]) rectBF = true;
+		else if(Fondo & Borde) rectBF = true;
+		else extra = true;
+		//if(Fondo[0]) color = "red";
+	}
+	else{
+		if(Fondo[0] || Fondo) rectF = true;
+		else if(Borde[0] || Borde) rectB = true;
+		else extra = true;
+	}
+	/*************************/
+	if(rectBF){
+		_canvas.fillStyle = Fondo[1];
+		_canvas.strokeStyle = Borde[1];
+		_canvas.strokeRect(Borde[2], Borde[3], Borde[4], Borde[5]);
+		_canvas.fillRect(_posx, _posy, _anch, _alto);
+	}
+	else if(rectF){
+		_canvas.fillStyle = Fondo[1];
+		_canvas.fillRect(_posx, _posy, _anch, _alto);
+	}
+	else if(rectB){
+		_canvas.strokeStyle = Borde[1];
+		_canvas.strokeRect(Borde[2], Borde[3], Borde[4], Borde[5]);
+	}
+	else if(extra){
+		_canvas.fillStyle = Fondo[1];
+		_canvas.fillRect(_posx, _posy, _anch, _alto);
+	}
+}
+/*****************************/
 function opcionesLapiz(opcion){
 	drawW.forma.tipo=opcion;
 	document.getElementById('opcionesLapiz').style.background.opacity=0;
