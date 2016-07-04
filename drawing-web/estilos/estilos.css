@@ -783,6 +783,9 @@ canvas{
 .codigoPanel>.btnS>div.btn_preview{
 	background: url('../imagenes/logos/preview.png') 100% 100% / 100% 100% no-repeat;
 }
+.codigoPanel>.btnS>div.btn_help{
+	background: url('../imagenes/logos/help.png') 100% 100% / 100% 100% no-repeat;
+}
 .codigoPanel>.areaCodigo{
 	position: absolute;
 	background: rgba(128, 128, 128,1);
