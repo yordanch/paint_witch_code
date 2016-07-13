@@ -792,6 +792,7 @@ canvas{
 	width: 450px;
 	height: 100%;
 	padding: 5px 15px;
+	padding-left: 33px;
 	font-family: arial;
 	font-size: 15px;
 	box-sizing: border-box;

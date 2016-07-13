@@ -20,7 +20,8 @@ function inicio() {
 	};
 	codWD = {
 		cod: "",
-		canvas: false
+		canvas: false,
+		linesC: []
 	};
 	if(document.getElementById('campoDraw')){
 		drawW.forma.circuloR = document.getElementById('tamVal').value;
@@ -232,6 +233,8 @@ function showpanel(){
 	var areaCod = document.createElement("div");
 	var btnHelp = document.createElement("div");
 	var btnClose = document.createElement("div");
+	var menuNumber = document.createElement("div");
+
 	btn.className = "btnS";
 	btnClose.className = "btn_close";
 	btnHelp.className = "btn_help";
@@ -239,12 +242,14 @@ function showpanel(){
 	btnP.className = "btn_preview";
 	div.className = "codigoPanel";
 	areaCod.className = "areaCodigo";
+	menuNumber.className = "menuNumber";
 	areaCod.contentEditable = "true";
-
+	menuNumber.innerHTML="<li>50</li><li>1</li><li>100</li><li>1000</li><li>99999</li>";
 	btnClose.addEventListener("click",hiddenPan,false);
 	btnP.addEventListener("click",previewCod,false);
 	btnC.addEventListener("click",clearArea,false);
 	areaCod.addEventListener("keyup",drawC,false);
+
 	btn.appendChild(btnP);
 	btn.appendChild(btnC);
 	btn.appendChild(btnHelp);
@@ -252,6 +257,7 @@ function showpanel(){
 	div.appendChild(btn);
 	div.appendChild(areaCod);
 	doc.appendChild(div);
+	div.appendChild(menuNumber);
 	calcTamPanel();
 	showPanelS();
 	/*****/
@@ -269,6 +275,8 @@ function calcTamPanel(){
 	tamPa.style.left = ntam;
 }
 function drawC(e){
+	console.log(e.key == "Enter");
+	if(e.key == "Enter") writeLinC(document.getElementsByClassName("areaCodigo")[0]);
 	if(e.key == "Backspace"){
 		var n = codWD.cod.length;
 		var te = codWD.cod;
