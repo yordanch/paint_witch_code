@@ -17,3 +17,6 @@ function writeLinC(area){
 	}
 	//codWD.linesC.push();
 }
+function anCod(){
+	
+}

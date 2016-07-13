@@ -275,7 +275,7 @@ function calcTamPanel(){
 	tamPa.style.left = ntam;
 }
 function drawC(e){
-	console.log(e.key == "Enter");
+	console.log(e.key);
 	if(e.key == "Enter") writeLinC(document.getElementsByClassName("areaCodigo")[0]);
 	if(e.key == "Backspace"){
 		var n = codWD.cod.length;
