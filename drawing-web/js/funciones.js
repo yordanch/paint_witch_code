@@ -23,6 +23,10 @@ function inicio() {
 		canvas: false,
 		linesC: []
 	};
+	letters = {
+		esp: ["objeto","fondoColor"],
+		eng: ["this", "fillStyle"]
+	};
 	if(document.getElementById('campoDraw')){
 		drawW.forma.circuloR = document.getElementById('tamVal').value;
 		dubujoCamenzar();
@@ -234,6 +238,7 @@ function showpanel(){
 	var btnHelp = document.createElement("div");
 	var btnClose = document.createElement("div");
 	var menuNumber = document.createElement("div");
+	var textA = document.createElement("input");
 
 	btn.className = "btnS";
 	btnClose.className = "btn_close";
@@ -243,13 +248,20 @@ function showpanel(){
 	div.className = "codigoPanel";
 	areaCod.className = "areaCodigo";
 	menuNumber.className = "menuNumber";
+	textA.className = "textA";
+	textA.type = "text";
+	textA.value = "";
+	textA.onFocus = true;
+
 	areaCod.contentEditable = "true";
 	menuNumber.innerHTML="<li>50</li><li>1</li><li>100</li><li>1000</li><li>99999</li>";
 	btnClose.addEventListener("click",hiddenPan,false);
 	btnP.addEventListener("click",previewCod,false);
 	btnC.addEventListener("click",clearArea,false);
-	areaCod.addEventListener("keyup",drawC,false);
+	//areaCod.addEventListener("keyup",drawC,false);
+	textA.addEventListener("keyup",drawC,false);
 
+	areaCod.appendChild(textA);
 	btn.appendChild(btnP);
 	btn.appendChild(btnC);
 	btn.appendChild(btnHelp);

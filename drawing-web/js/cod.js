@@ -15,7 +15,7 @@ function writeLinC(area){
 		var li = document.createElement("li");
 		_area.appendChild(li);
 	}
-	//codWD.linesC.push();
+	//codWD.linesC.push();letters
 }
 function anCod(){
 	
