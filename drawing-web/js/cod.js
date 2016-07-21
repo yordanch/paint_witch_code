@@ -15,6 +15,18 @@ function writeLinC(area){
 		var li = document.createElement("li");
 		_area.appendChild(li);
 	}
+	if(_area.childNodes.length>0){
+		area.innerHTML = "";
+		var textA = document.createElement("input");
+		textA.type = "text";
+		textA.value = "";
+		textA.onFocus = true;
+
+		for(j=0; j<_area.childNodes.length;j++){
+			area.appendChild(_area.childNodes[j]);
+		}
+		area.appendChild(textA);
+	}
 	//codWD.linesC.push();letters
 }
 function anCod(){
