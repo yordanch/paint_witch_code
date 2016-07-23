@@ -32,3 +32,24 @@ function writeLinC(area){
 function anCod(){
 	
 }
+function panelPo(){
+	var panelPoA = document.getElementsByClassName("codigoPanel")[0];
+	var btnPosLe = document.getElementsByClassName("btn_posLe")[0];
+	if(!panelPoA || !btnPosLe) return;
+	switch(codWD.posCa){
+		case "center":
+			panelPoA.style = "";
+			panelPoA.id = "codigoPanelLeft";
+			btnPosLe.style.backgroundImage = "url('imagenes/logos/center.png')";
+			console.log(panelPoA);
+			codWD.posCa = "left";
+			break;
+		case "left":
+			panelPoA.id = "";
+			btnPosLe.style.backgroundImage = "url('imagenes/logos/left.png')";
+			console.log(panelPoA);
+			calcTamPanel();
+			codWD.posCa = "center";
+			break;
+	}
+}

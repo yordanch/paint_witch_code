@@ -21,7 +21,8 @@ function inicio() {
 	codWD = {
 		cod: "",
 		canvas: false,
-		linesC: []
+		linesC: [],
+		posCa: "center"
 	};
 	letters = {
 		esp: ["objeto","fondoColor"],
@@ -51,9 +52,12 @@ function inicio() {
 			document.getElementById('holaDrag').innerHTML='<li id="logeo" onclick="ingresarSaUser(\'logeo\')" title="logearse"></li><li id="nuevoU" onclick="ingresarSaUser(\'registro\')" title="registrar usuario"></li>';
 		}
 	}
+	//////////////////////////////
 	window.onresize = function(){
 		calcTamPanel();
+		Tamanio();
 	};
+	//////////////////////////////
 }
 function dibujarCanvas(){
 	var canvas=document.createElement('canvas');
@@ -235,16 +239,22 @@ function showpanel(){
 	var btnC = document.createElement("div");
 	var btnP = document.createElement("div");
 	var areaCod = document.createElement("div");
+	var Cod = document.createElement("pre");
 	var btnHelp = document.createElement("div");
 	var btnClose = document.createElement("div");
+	var btnPosL = document.createElement("div");
 	var menuNumber = document.createElement("div");
 	var textA = document.createElement("input");
+	//////////////////////////////////////
+	var hiddenCod = document.getElementById("hiddenCod");
+	//////////////////////////////////////
 
 	btn.className = "btnS";
 	btnClose.className = "btn_close";
 	btnHelp.className = "btn_help";
 	btnC.className = "btn_clear";
 	btnP.className = "btn_preview";
+	btnPosL.className = "btn_posLe";
 	div.className = "codigoPanel";
 	areaCod.className = "areaCodigo";
 	menuNumber.className = "menuNumber";
@@ -253,26 +263,37 @@ function showpanel(){
 	textA.value = "";
 	textA.onFocus = true;
 
-	areaCod.contentEditable = "true";
-	menuNumber.innerHTML="<li>50</li><li>1</li><li>100</li><li>1000</li><li>99999</li>";
+	/*codigo area*/
+	Cod.contentEditable = "true";
+	Cod.style.background = "rgb(238, 238, 238)";
+	Cod.style.paddingLeft = "7px";
+	Cod.style.overflow = "scroll";
+	Cod.id = "jsCode";
+	Cod.spellcheck = "false";
+	Cod.innerHTML = hiddenCod.innerHTML;
+	/*fin codigo area*/
+	menuNumber.innerHTML="<li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>5</li><li>7</li>";
 	btnClose.addEventListener("click",hiddenPan,false);
 	btnP.addEventListener("click",previewCod,false);
 	btnC.addEventListener("click",clearArea,false);
 	//areaCod.addEventListener("keyup",drawC,false);
 	textA.addEventListener("keyup",drawC,false);
+	btnPosL.addEventListener("click",panelPo,false);
 
-	areaCod.appendChild(textA);
+	//areaCod.appendChild(textA);
+	areaCod.appendChild(Cod);
 	btn.appendChild(btnP);
 	btn.appendChild(btnC);
 	btn.appendChild(btnHelp);
 	btn.appendChild(btnClose);
+	btn.appendChild(btnPosL);
 	div.appendChild(btn);
 	div.appendChild(areaCod);
 	doc.appendChild(div);
 	div.appendChild(menuNumber);
 	calcTamPanel();
 	showPanelS();
-	/*****/
+	/******/
 	codWD.canvas = startCanvas();
 	drawRect(codWD.canvas, 20, 20, 50, 50, [true, "#f00"], [true, "#00f", 19, 19, 52, 52]);
 }
@@ -283,6 +304,7 @@ function startCanvas(){
 function calcTamPanel(){
 	var tamD = document.documentElement.offsetWidth;
 	var tamPa = document.getElementsByClassName("codigoPanel")[0];
+	if(!tamPa) return;
 	var ntam = ((tamD - tamPa.offsetWidth) / 2) + "px";
 	tamPa.style.left = ntam;
 }

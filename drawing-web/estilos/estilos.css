@@ -786,15 +786,32 @@ canvas{
 .codigoPanel>.btnS>div.btn_help{
 	background: url('../imagenes/logos/help.png') 100% 100% / 100% 100% no-repeat;
 }
+.codigoPanel>.btnS>div.btn_posLe{
+	background: url('../imagenes/logos/left.png') 100% 100% / 100% 100% no-repeat;
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	-ms-transition: all 1s;
+	transition: all 1s;
+}
 .codigoPanel>.areaCodigo{
 	position: absolute;
 	background: rgba(128, 128, 128,1);
 	width: 450px;
 	height: 100%;
-	padding: 5px 15px;
+	padding: 5px;
 	padding-left: 33px;
 	font-family: arial;
 	font-size: 15px;
+	box-sizing: border-box;
+}
+#codigoPanelLeft{
+	position: fixed;
+	right: 0;
+	left: auto;
+	top: 0;
+	bottom: auto;
+	z-index: 9;
+	height: 100%;
 	box-sizing: border-box;
 }
 /********************************/
