@@ -28,6 +28,18 @@ function inicio() {
 		esp: ["objeto","fondoColor"],
 		eng: ["this", "fillStyle"]
 	};
+	imgCanvas = {
+		posX: 0,
+		posY: 0,
+		widIm: 100,
+		heiIm: 100
+	};
+	lienzo = {
+		area: null,
+		ctx: false,
+		ancho: null,
+		alto: null
+	}
 	if(document.getElementById('campoDraw')){
 		drawW.forma.circuloR = document.getElementById('tamVal').value;
 		dubujoCamenzar();
@@ -75,6 +87,11 @@ function dubujoCamenzar(){
 		contexto.fillStyle="#eee";
 		contexto.fillRect(0,0,canvas.width,canvas.height);
 		document.getElementById('color').style.background=drawW.color;
+
+		lienzo.ctx = canvas.getContext("2d");
+		lienzo.ancho = canvas.width;
+		lienzo.alto = canvas.height;
+		lienzo.area = canvas;
 	}else{
 		alert("Disculpe por las molestias, pero no puedes dibujar, necesitas el navegador actualizado");
 	}
@@ -144,6 +161,19 @@ function dibujoConCircles(e){
 	_posY = 1 + Math.ceil(Math.random() * drawW.forma.circuloR)
 	contexto.arc(drawW.posicionX + _posX, drawW.posicionY + _posY, _radio, 0, Math.PI * 2);
 	contexto.fill();
+}
+function drawImageC(){
+	if(!lienzo.ctx) return;
+	var area = lienzo.ctx;
+	var img = new Image();
+	img.src = "imagenes/tmp_image/p1.jpg";
+	imgCanvas.widIm = lienzo.area.width;
+	imgCanvas.heiIm = lienzo.area.height;
+	imgCanvas.posX = 0;
+	imgCanvas.posY = 0;
+	img.addEventListener("load", function(){
+		area.drawImage(img, imgCanvas.posX, imgCanvas.posY, imgCanvas.widIm, imgCanvas.heiIm);
+	},false);
 }
 function eventos(){
 	canvas.addEventListener("mousedown", clickMouse);
