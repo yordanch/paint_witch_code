@@ -166,7 +166,18 @@ function drawImageC(){
 	if(!lienzo.ctx) return;
 	var area = lienzo.ctx;
 	var img = new Image();
-	img.src = "imagenes/tmp_image/p1.jpg";
+	var imgO = document.getElementById('imgOpen');
+	imgO.click();
+	imgO.addEventListener("change",function(e){
+		var file = e.target.files[0];
+		var lector = new FileReader();
+
+		lector.onload = function(e){
+			img.src = e.target.result;
+		}
+		lector.readAsDataURL(file);
+	},false);
+	//img.src = "imagenes/tmp_image/p1.jpg";
 	imgCanvas.widIm = lienzo.area.width;
 	imgCanvas.heiIm = lienzo.area.height;
 	imgCanvas.posX = 0;
