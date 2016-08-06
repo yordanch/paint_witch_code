@@ -45,6 +45,17 @@ function inicio() {
 		puntos: [],
 		color: []
 	};
+	drawRect = {
+		objR: document.createElement("div"),
+		objRId: "rectanguloD", 
+		posYR: 0,
+		posXR: 0,
+		anchoR: 100,
+		altoR: 100,
+		colorR: "red",
+		BordeR: null,
+		fillRec: true
+	};
 	if(document.getElementById('campoDraw')){
 		drawW.forma.circuloR = document.getElementById('tamVal').value;
 		dubujoCamenzar();
@@ -119,6 +130,7 @@ function dibujarOb(e){
 		switch(drawW.forma.tipo){
 			case "lineas": dibujoConLines(e); break;
 			case "circulos": dibujoConCircles(e);break;
+			case "recta": startC.drawRect(e); break;
 		}
 	}
 }

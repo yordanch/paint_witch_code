@@ -26,6 +26,44 @@
 			area.drawImage(img, imgCanvas.posX, imgCanvas.posY, imgCanvas.widIm, imgCanvas.heiIm);
 		}
 	}
+	DrawSnd.prototype.drawRect = function(e){
+		var _posX = e.layerX - 15;
+		var _posY = e.layerY;
+		var div = document.getElementById("canvasImprim");
+
+		console.log(e.layerX + " Y: " + e.layerY);
+		if(!lienzo.ctx){
+			lienzo.ctx.fillStyle="red";
+			lienzo.ctx.fillRect(e.layerX,e.layerY,100,100);
+		}
+		/*drawRect = {
+			objR: document.createElement("div"),
+			posYR: 0,
+			posXR: 0,
+			colorR: "red",
+			BordeR: null,
+			fillRec: true
+		};*/
+		if(!document.getElementById("rectanguloD")){
+			drawRect.objR.id = drawRect.objRId;
+			div.appendChild(drawRect.objR);
+			////////////////////////
+			drawRect.posXR = _posX + lienzo.area.offsetLeft + 20;
+			drawRect.posYR = _posY + lienzo.area.offsetTop;
+			drawRect.anchoR = 10;
+			drawRect.altoR = 10;
+			drawRect.objR.style.left = drawRect.posXR + "px";
+			drawRect.objR.style.top = drawRect.posXR + "px";
+		}else{
+			console.log(document.getElementById("rectanguloD"));
+			var _nPosX = _posX + lienzo.area.offsetLeft + 20;
+			var _nPosY = _posY + lienzo.area.offsetTop;
+			drawRect.altoR = _nPosX - drawRect.posXR;
+			drawRect.anchoR = _nPosY - drawRect.posYR;
+			drawRect.objR.style.width = drawRect.anchoR + "px";
+			drawRect.objR.style.height = drawRect.altoR + "px";
+		}
+	}
 	drawSnd.DrawSnd = DrawSnd;
 })(window);
 var startC = new DrawSnd();
