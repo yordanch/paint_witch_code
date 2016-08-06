@@ -29,6 +29,7 @@ function inicio() {
 		eng: ["this", "fillStyle"]
 	};
 	imgCanvas = {
+		objectI: null,
 		posX: 0,
 		posY: 0,
 		widIm: 100,
@@ -39,7 +40,11 @@ function inicio() {
 		ctx: false,
 		ancho: null,
 		alto: null
-	}
+	};
+	dibujoCirculos = {
+		puntos: [],
+		color: []
+	};
 	if(document.getElementById('campoDraw')){
 		drawW.forma.circuloR = document.getElementById('tamVal').value;
 		dubujoCamenzar();
@@ -68,6 +73,8 @@ function inicio() {
 	window.onresize = function(){
 		calcTamPanel();
 		Tamanio();
+		//instacia en draw.js
+		startC.resizeW();
 	};
 	//////////////////////////////
 }
@@ -174,6 +181,7 @@ function drawImageC(){
 
 		lector.onload = function(e){
 			img.src = e.target.result;
+			imgCanvas.objectI = e.target;
 		}
 		lector.readAsDataURL(file);
 	},false);
