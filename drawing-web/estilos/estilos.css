@@ -827,6 +827,17 @@ canvas{
 	top: 0;
 	pointer-events: none;
 }
+#circuloD{
+	position: absolute;
+	border-radius: 50%;
+	border: 1px dotted rgb(20, 23, 26);
+  box-shadow: 0 0 5px rgba(52, 175, 197,.5);
+	width: 50px;
+	height: 50px;
+	left: 0;
+	top: 0;
+	pointer-events: none;
+}
 /********************************/
 .clear{
 	clear: both;
