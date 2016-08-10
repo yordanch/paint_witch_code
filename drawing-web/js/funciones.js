@@ -50,11 +50,22 @@ function inicio() {
 		objRId: "rectanguloD", 
 		posYR: 0,
 		posXR: 0,
-		anchoR: 100,
-		altoR: 100,
+		anchoR: 0,
+		altoR: 0,
 		colorR: "red",
 		BordeR: null,
 		fillRec: true
+	};
+	drawCircle = {
+		objC: document.createElement("div"),
+		objCId: "circuloD", 
+		posYC: 0,
+		posXC: 0,
+		anchoC: 0,
+		altoC: 0,
+		colorC: "blue",
+		BordeC: null,
+		fillCi: true
 	};
 	if(document.getElementById('campoDraw')){
 		drawW.forma.circuloR = document.getElementById('tamVal').value;
@@ -131,6 +142,7 @@ function dibujarOb(e){
 			case "lineas": dibujoConLines(e); break;
 			case "circulos": dibujoConCircles(e);break;
 			case "recta": startC.drawRect(e); break;
+			case "circ": startC.drawCircle(e); break;
 		}
 	}
 }
