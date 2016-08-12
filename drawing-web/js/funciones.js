@@ -297,7 +297,7 @@ function cursorC(){
 	}
 }
 function lapizC(){
-	drawW.borrador.estado=false;
+	cursorC();
 	var formG='<div id="opcionesLapiz"><li id="circuloSe" onclick="opcionesLapiz(\'circulos\')"></li><li id="lineSe" onclick="opcionesLapiz(\'lineas\')"></li></div>';
 	var tag=document.getElementById('flotante');
 	tag.innerHTML=formG;
