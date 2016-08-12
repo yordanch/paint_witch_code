@@ -67,6 +67,16 @@ function inicio() {
 		BordeC: null,
 		fillCi: true
 	};
+	drawText = {
+		estado: false,
+		objR: document.createElement("div"),
+		objRId: "textD",
+		typeLetter: "Arial",
+		fontSize: 12,
+		fontColor: "black",
+		fontShadow: "0 0 gray",
+		other: null
+	}
 	if(document.getElementById('campoDraw')){
 		drawW.forma.circuloR = document.getElementById('tamVal').value;
 		dubujoCamenzar();
